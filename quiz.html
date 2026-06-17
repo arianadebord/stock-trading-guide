@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Beginner Trading Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="steps">
+  <h2>Beginner Trading Quiz</h2>
+
+  <div class="warning">
+    <h3>Test Your Knowledge</h3>
+    <p>This quiz is for education only. It does not make anyone ready to trade real money.</p>
+  </div>
+
+  <div class="card">
+    <h3>1. What is paper trading?</h3>
+    <label><input type="radio" name="q1" value="wrong"> Trading with real money</label><br>
+    <label><input type="radio" name="q1" value="correct"> Practicing with fake money</label><br>
+    <label><input type="radio" name="q1" value="wrong"> Buying only expensive stocks</label>
+  </div>
+
+  <div class="card">
+    <h3>2. What is support?</h3>
+    <label><input type="radio" name="q2" value="correct"> A price area where a stock has trouble falling below</label><br>
+    <label><input type="radio" name="q2" value="wrong"> A guaranteed profit area</label><br>
+    <label><input type="radio" name="q2" value="wrong"> A company’s phone number</label>
+  </div>
+
+  <div class="card">
+    <h3>3. What is FOMO?</h3>
+    <label><input type="radio" name="q3" value="correct"> Fear of missing out</label><br>
+    <label><input type="radio" name="q3" value="wrong"> Free money online</label><br>
+    <label><input type="radio" name="q3" value="wrong"> A type of dividend</label>
+  </div>
+
+  <div class="card">
+    <h3>4. What does a stop loss help with?</h3>
+    <label><input type="radio" name="q4" value="wrong"> Guaranteeing profit</label><br>
+    <label><input type="radio" name="q4" value="correct"> Planning where to exit if a trade goes wrong</label><br>
+    <label><input type="radio" name="q4" value="wrong"> Making stocks always go up</label>
+  </div>
+
+  <div class="card">
+    <h3>5. What should beginners avoid?</h3>
+    <label><input type="radio" name="q5" value="wrong"> Learning first</label><br>
+    <label><input type="radio" name="q5" value="correct"> Trading bill money</label><br>
+    <label><input type="radio" name="q5" value="wrong"> Practicing first</label>
+  </div>
+
+  <button onclick="checkQuiz()">Submit Quiz</button>
+
+  <div id="quizResult" class="card"></div>
+
+  <a href="index.html"><button>Back Home</button></a>
+</section>
+
+<script>
+function checkQuiz() {
+  let score = 0;
+  let total = 5;
+
+  for (let i = 1; i <= total; i++) {
+    let answer = document.querySelector('input[name="q' + i + '"]:checked');
+    if (answer && answer.value === "correct") {
+      score++;
+    }
+  }
+
+  let result = document.getElementById("quizResult");
+
+  result.innerHTML = `
+    <h3>Your Score: ${score}/${total}</h3>
+    <p>${score === total ? "Great job! You understand the beginner basics." : "Keep studying and try again after reviewing the lessons."}</p>
+  `;
+}
+</script>
+
+</body>
+</html>
