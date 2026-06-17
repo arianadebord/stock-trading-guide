@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Risk Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section class="steps">
+  <h2>Beginner Risk Calculator</h2>
+
+  <div class="warning">
+    <h3>Practice Tool</h3>
+    <p>This calculator is for learning only. It does not guarantee safety or profit.</p>
+  </div>
+
+  <div class="card">
+    <h3>Enter Your Practice Numbers</h3>
+
+    <input id="account" type="number" placeholder="Account size, example: 10000">
+    <input id="riskPercent" type="number" placeholder="Risk percent, example: 1">
+    <input id="entry" type="number" placeholder="Entry price, example: 50">
+    <input id="stop" type="number" placeholder="Stop loss price, example: 48">
+
+    <button onclick="calculateRisk()">Calculate</button>
+
+    <div id="riskResult"></div>
+  </div>
+
+  <div class="card">
+    <h3>What This Means</h3>
+    <p><strong>Account size:</strong> fake or real account amount.</p>
+    <p><strong>Risk percent:</strong> how much of your account you are willing to lose on one trade.</p>
+    <p><strong>Entry price:</strong> where you buy.</p>
+    <p><strong>Stop loss:</strong> where you sell if the trade goes wrong.</p>
+  </div>
+
+  <a href="index.html"><button>Back Home</button></a>
+</section>
+
+<script>
+function calculateRisk() {
+  let account = Number(document.getElementById("account").value);
+  let riskPercent = Number(document.getElementById("riskPercent").value);
+  let entry = Number(document.getElementById("entry").value);
+  let stop = Number(document.getElementById("stop").value);
+
+  let result = document.getElementById("riskResult");
+
+  if (!account || !riskPercent || !entry || !stop || entry <= stop) {
+    result.innerHTML = "<p>Please enter valid numbers. Entry price must be higher than stop loss.</p>";
+    return;
+  }
+
+  let dollarRisk = account * (riskPercent / 100);
+  let riskPerShare = entry - stop;
+  let shares = Math.floor(dollarRisk / riskPerShare);
+  let positionCost = shares * entry;
+
+  result.innerHTML = `
+    <h3>Risk Result</h3>
+    <p><strong>Money at risk:</strong> $${dollarRisk.toFixed(2)}</p>
+    <p><strong>Risk per share:</strong> $${riskPerShare.toFixed(2)}</p>
+    <p><strong>Practice shares:</strong> ${shares}</p>
+    <p><strong>Estimated position cost:</strong> $${positionCost.toFixed(2)}</p>
+  `;
+}
+</script>
+</body>
+</html>
