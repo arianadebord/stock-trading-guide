@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #0b0b0b;
+  color: white;
+  line-height: 1.6;
+}
+
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #120000, #000000, #3d0000);
+  padding: 25px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav h1 {
+  color: #ff1f1f;
+  font-size: 28px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  background: #ff1f1f;
+  padding: 10px 18px;
+  border-radius: 8px;
+}
+
+.hero-content {
+  max-width: 700px;
+  margin: 140px auto;
+  text-align: center;
+}
+
+.hero-content h2 {
+  font-size: 48px;
+  color: #ff3333;
+}
+
+.hero-content p {
+  margin: 20px 0;
+  font-size: 20px;
+}
+
+button {
+  background: #ff1f1f;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #cc0000;
+}
+
+.warning {
+  background: #250000;
+  border-top: 2px solid #ff1f1f;
+  border-bottom: 2px solid #ff1f1f;
+  padding: 30px;
+  text-align: center;
+}
+
+.steps, .planner {
+  padding: 50px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.steps h2, .planner h2 {
+  color: #ff3333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: #161616;
+  border: 1px solid #ff1f1f;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.25);
+}
+
+.card h3 {
+  color: #ff3333;
+  margin-bottom: 10px;
+}
+
+.planner input {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  background: #111;
+  color: white;
+  border: 1px solid #ff1f1f;
+  border-radius: 8px;
+}
+
+#planOutput {
+  margin-top: 25px;
+  background: #160000;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ff3333;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #050505;
+  color: #aaa;
+}
