@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redline Trading Guide</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="hero">
+    <nav>
+      <h1>Redline Trading</h1>
+      <a href="#steps">Start Learning</a>
+    </nav>
+
+    <div class="hero-content">
+      <h2>Learn Stock Trading Step by Step</h2>
+      <p>A beginner-friendly guide to help you understand stocks, risks, brokers, charts, and trading plans.</p>
+      <button onclick="scrollToSteps()">Get Started</button>
+    </div>
+  </header>
+
+  <section class="warning">
+    <h3>Important Disclaimer</h3>
+    <p>This website is for education only. This is not financial advice. Trading stocks can lose money.</p>
+  </section>
+
+  <section id="steps" class="steps">
+    <h2>Step-by-Step Trading Roadmap</h2>
+
+    <div class="card">
+      <h3>Step 1: Learn What Stocks Are</h3>
+      <p>A stock is a small piece of ownership in a company. Prices move up and down based on demand, news, earnings, and the economy.</p>
+    </div>
+
+    <div class="card">
+      <h3>Step 2: Learn the Risks</h3>
+      <p>Never trade money you cannot afford to lose. Start small and practice before using real money.</p>
+    </div>
+
+    <div class="card">
+      <h3>Step 3: Choose a Trading Platform</h3>
+      <p>Common beginner platforms include Robinhood, Fidelity, Webull, Charles Schwab, and E*TRADE.</p>
+    </div>
+
+    <div class="card">
+      <h3>Step 4: Practice First</h3>
+      <p>Use paper trading to practice without risking real money.</p>
+    </div>
+
+    <div class="card">
+      <h3>Step 5: Build a Trading Plan</h3>
+      <p>Decide what you will buy, when you will buy, when you will sell, and how much money you are willing to risk.</p>
+    </div>
+  </section>
+
+  <section class="planner">
+    <h2>Make Your Beginner Trading Plan</h2>
+
+    <input id="goal" placeholder="Your trading goal..." />
+    <input id="risk" placeholder="How much can you risk?" />
+    <input id="platform" placeholder="Trading platform you want to use..." />
+
+    <button onclick="savePlan()">Save My Plan</button>
+
+    <div id="planOutput"></div>
+  </section>
+
+  <footer>
+    <p>© 2026 Redline Trading Guide</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
