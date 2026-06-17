@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trading Plan Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section class="steps">
+  <h2>Trading Plan Generator</h2>
+
+  <div class="card">
+    <h3>Create Your Practice Plan</h3>
+
+    <input id="experience" placeholder="Experience level: beginner, some practice, etc.">
+    <input id="goal" placeholder="Your goal: learn charts, practice, build confidence...">
+    <input id="risk" placeholder="Risk rule: example, fake money only for now">
+    <input id="strategy" placeholder="Strategy to practice: support/resistance, trends...">
+
+    <button onclick="makePlan()">Generate Plan</button>
+
+    <div id="plan"></div>
+  </div>
+
+  <a href="index.html"><button>Back Home</button></a>
+</section>
+
+<script>
+function makePlan() {
+  let experience = document.getElementById("experience").value;
+  let goal = document.getElementById("goal").value;
+  let risk = document.getElementById("risk").value;
+  let strategy = document.getElementById("strategy").value;
+
+  if (!experience || !goal || !risk || !strategy) {
+    document.getElementById("plan").innerHTML = "<p>Please fill out all boxes first.</p>";
+    return;
+  }
+
+  document.getElementById("plan").innerHTML = `
+    <h3>Your Beginner Trading Plan</h3>
+    <p><strong>Experience:</strong> ${experience}</p>
+    <p><strong>Main Goal:</strong> ${goal}</p>
+    <p><strong>Risk Rule:</strong> ${risk}</p>
+    <p><strong>Practice Strategy:</strong> ${strategy}</p>
+
+    <h3>Rules To Follow</h3>
+    <p>☐ I will practice before using real money.</p>
+    <p>☐ I will write every trade in my journal.</p>
+    <p>☐ I will avoid revenge trading.</p>
+    <p>☐ I will not trade money needed for bills.</p>
+    <p>☐ I will review wins and losses calmly.</p>
+  `;
+}
+</script>
+</body>
+</html>
