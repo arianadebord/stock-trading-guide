@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Profit and Loss Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="steps">
+  <h2>Profit / Loss Calculator</h2>
+
+  <div class="card">
+    <h3>Enter Trade Numbers</h3>
+
+    <input id="buyPrice" type="number" placeholder="Buy price">
+    <input id="sellPrice" type="number" placeholder="Sell price">
+    <input id="shares" type="number" placeholder="Number of shares">
+
+    <button onclick="calculatePL()">Calculate</button>
+
+    <div id="plResult"></div>
+  </div>
+
+  <a href="index.html"><button>Back Home</button></a>
+</section>
+
+<script>
+function calculatePL() {
+  let buy = Number(document.getElementById("buyPrice").value);
+  let sell = Number(document.getElementById("sellPrice").value);
+  let shares = Number(document.getElementById("shares").value);
+  let result = document.getElementById("plResult");
+
+  if (!buy || !sell || !shares) {
+    result.innerHTML = "<p>Please fill out all boxes.</p>";
+    return;
+  }
+
+  let profit = (sell - buy) * shares;
+  let percent = ((sell - buy) / buy) * 100;
+
+  result.innerHTML = `
+    <h3>Result</h3>
+    <p><strong>Profit/Loss:</strong> $${profit.toFixed(2)}</p>
+    <p><strong>Percent Change:</strong> ${percent.toFixed(2)}%</p>
+  `;
+}
+</script>
+
+</body>
+</html>
