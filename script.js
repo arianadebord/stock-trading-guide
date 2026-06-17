@@ -1,9 +1,3 @@
-function scrollToSteps() {
-  document.getElementById("steps").scrollIntoView({
-    behavior: "smooth"
-  });
-}
-
 function savePlan() {
   const goal = document.getElementById("goal").value;
   const risk = document.getElementById("risk").value;
@@ -19,8 +13,8 @@ function savePlan() {
   output.innerHTML = `
     <h3>Your Beginner Trading Plan</h3>
     <p><strong>Goal:</strong> ${goal}</p>
-    <p><strong>Risk Amount:</strong> ${risk}</p>
+    <p><strong>Risk Rule:</strong> ${risk}</p>
     <p><strong>Platform:</strong> ${platform}</p>
-    <p>Remember: start small, practice first, and never trade money you cannot afford to lose.</p>
+    <p>Good start. Practice first, keep learning, and never trade money you cannot afford to lose.</p>
   `;
 }
