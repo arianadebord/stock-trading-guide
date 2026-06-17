@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Certificate of Completion</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="steps">
+  <h2>Certificate of Completion</h2>
+
+  <div class="card" style="text-align:center; padding:50px;">
+    <h3 style="font-size:32px;">🏆 Redline Trading Academy</h3>
+    <h2>Certificate of Completion</h2>
+
+    <p>This certificate recognizes that the learner completed beginner education lessons including:</p>
+
+    <p>✅ Stock Basics</p>
+    <p>✅ Chart Reading</p>
+    <p>✅ Risk Management</p>
+    <p>✅ Trading Psychology</p>
+    <p>✅ Paper Trading Practice</p>
+    <p>✅ Beginner Quiz</p>
+
+    <br>
+
+    <input id="studentName" placeholder="Type your name here">
+
+    <button onclick="makeCertificate()">Create Certificate</button>
+
+    <div id="certificateName"></div>
+  </div>
+
+  <a href="index.html"><button>Back Home</button></a>
+</section>
+
+<script>
+function makeCertificate() {
+  let name = document.getElementById("studentName").value;
+  let box = document.getElementById("certificateName");
+
+  if (name === "") {
+    box.innerHTML = "<p>Please type your name first.</p>";
+    return;
+  }
+
+  box.innerHTML = `
+    <h2 style="color:#ff3333; margin-top:25px;">${name}</h2>
+    <p>has completed the beginner learning path.</p>
+    <p><strong>Educational use only. This does not certify financial expertise.</strong></p>
+  `;
+}
+</script>
+
+</body>
+</html>
