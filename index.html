@@ -3,75 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Redline Trading Guide</title>
+  <title>Redline Trading Academy</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <header class="hero">
-    <nav>
-      <h1>Redline Trading</h1>
-      <a href="#steps">Start Learning</a>
-    </nav>
-
-    <div class="hero-content">
-      <h2>Learn Stock Trading Step by Step</h2>
-      <p>A beginner-friendly guide to help you understand stocks, risks, brokers, charts, and trading plans.</p>
-      <button onclick="scrollToSteps()">Get Started</button>
+<header class="hero">
+  <nav>
+    <h1>Redline Trading Academy</h1>
+    <div>
+      <a href="basics.html">Basics</a>
+      <a href="risk.html">Risk</a>
+      <a href="practice.html">Practice</a>
     </div>
-  </header>
+  </nav>
 
-  <section class="warning">
-    <h3>Important Disclaimer</h3>
-    <p>This website is for education only. This is not financial advice. Trading stocks can lose money.</p>
-  </section>
+  <div class="hero-content">
+    <p class="badge">Beginner Friendly • Fake Practice Trading • Step-by-Step</p>
+    <h2>Learn How Stock Trading Works Before Risking Real Money</h2>
+    <p>
+      A simple red-themed learning platform for beginners who want to understand stocks,
+      trading platforms, risk, charts, and paper trading.
+    </p>
 
-  <section id="steps" class="steps">
-    <h2>Step-by-Step Trading Roadmap</h2>
-
-    <div class="card">
-      <h3>Step 1: Learn What Stocks Are</h3>
-      <p>A stock is a small piece of ownership in a company. Prices move up and down based on demand, news, earnings, and the economy.</p>
+    <div class="hero-buttons">
+      <a href="practice.html"><button>Start Paper Trading</button></a>
+      <a href="#learn"><button class="outline">Learn First</button></a>
     </div>
+  </div>
+</header>
 
-    <div class="card">
-      <h3>Step 2: Learn the Risks</h3>
-      <p>Never trade money you cannot afford to lose. Start small and practice before using real money.</p>
-    </div>
+<section class="warning">
+  <h3>Education Only</h3>
+  <p>This website does not give financial advice. Trading can lose money. Practice first.</p>
+</section>
 
-    <div class="card">
-      <h3>Step 3: Choose a Trading Platform</h3>
-      <p>Common beginner platforms include Robinhood, Fidelity, Webull, Charles Schwab, and E*TRADE.</p>
-    </div>
+<section id="learn" class="steps">
+  <h2>Choose Where You Want To Start</h2>
 
-    <div class="card">
-      <h3>Step 4: Practice First</h3>
-      <p>Use paper trading to practice without risking real money.</p>
-    </div>
+  <div class="grid">
+    <a href="basics.html" class="card click-card">
+      <h3>Stock Basics</h3>
+      <p>Learn what stocks, shares, markets, and brokers are.</p>
+    </a>
 
-    <div class="card">
-      <h3>Step 5: Build a Trading Plan</h3>
-      <p>Decide what you will buy, when you will buy, when you will sell, and how much money you are willing to risk.</p>
-    </div>
-  </section>
+    <a href="risk.html" class="card click-card">
+      <h3>Risk Management</h3>
+      <p>Learn how to avoid risking too much money too fast.</p>
+    </a>
 
-  <section class="planner">
-    <h2>Make Your Beginner Trading Plan</h2>
+    <a href="terms.html" class="card click-card">
+      <h3>Trading Terms</h3>
+      <p>Understand beginner words like bull market, bear market, dividend, and portfolio.</p>
+    </a>
 
-    <input id="goal" placeholder="Your trading goal..." />
-    <input id="risk" placeholder="How much can you risk?" />
-    <input id="platform" placeholder="Trading platform you want to use..." />
+    <a href="platforms.html" class="card click-card">
+      <h3>Trading Platforms</h3>
+      <p>Compare beginner platforms and learn what to look for.</p>
+    </a>
 
-    <button onclick="savePlan()">Save My Plan</button>
+    <a href="checklist.html" class="card click-card">
+      <h3>Beginner Checklist</h3>
+      <p>Use a checklist before making your first practice trade.</p>
+    </a>
 
-    <div id="planOutput"></div>
-  </section>
+    <a href="practice.html" class="card click-card featured">
+      <h3>Paper Trading Simulator</h3>
+      <p>Practice buying and selling with fake money and a fake chart.</p>
+    </a>
+  </div>
+</section>
 
-  <footer>
-    <p>© 2026 Redline Trading Guide</p>
-  </footer>
+<section class="planner">
+  <h2>Create Your Beginner Plan</h2>
 
-  <script src="script.js"></script>
+  <input id="goal" placeholder="Example: Learn before using real money" />
+  <input id="risk" placeholder="Example: $0 real money until I practice" />
+  <input id="platform" placeholder="Example: Paper trading simulator first" />
+
+  <button onclick="savePlan()">Save My Plan</button>
+
+  <div id="planOutput"></div>
+</section>
+
+<footer>
+  <p>© 2026 Redline Trading Academy | Educational use only</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
-<a href="practice.html"><button>Practice Paper Trading</button></a>
