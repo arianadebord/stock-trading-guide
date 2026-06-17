@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paper Trading Practice</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .practice-box {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 25px;
+    }
+
+    .money-card {
+      background: #160000;
+      border: 1px solid #ff1f1f;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.25);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .stat {
+      background: #111;
+      border: 1px solid #ff3333;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    canvas {
+      width: 100%;
+      height: 320px;
+      background: #050505;
+      border: 1px solid #ff3333;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .trade-controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .trade-controls input {
+      padding: 14px;
+      background: #111;
+      color: white;
+      border: 1px solid #ff1f1f;
+      border-radius: 8px;
+    }
+
+    .history {
+      background: #111;
+      border: 1px solid #ff1f1f;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    .history p {
+      border-bottom: 1px solid #333;
+      padding: 8px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="practice-box">
+    <h2>Paper Trading Practice</h2>
+
+    <div class="money-card">
+      <p>
+        This is fake practice trading. You start with fake paper money and can practice buying and selling a fake stock.
+        This is not real money and not financial advice.
+      </p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <h3>Fake Cash</h3>
+        <p id="cash">$10,000</p>
+      </div>
+
+      <div class="stat">
+        <h3>Fake Stock Price</h3>
+        <p id="price">$100</p>
+      </div>
+
+      <div class="stat">
+        <h3>Shares Owned</h3>
+        <p id="shares">0</p>
+      </div>
+
+      <div class="stat">
+        <h3>Total Account Value</h3>
+        <p id="value">$10,000</p>
+      </div>
+    </div>
+
+    <canvas id="stockChart"></canvas>
+
+    <div class="trade-controls">
+      <input type="number" id="amount" placeholder="How many shares?" min="1" />
+      <button onclick="buyStock()">Buy</button>
+      <button onclick="sellStock()">Sell</button>
+      <button onclick="nextDay()">Next Day</button>
+      <button onclick="resetGame()">Reset</button>
+    </div>
+
+    <div class="history">
+      <h3>Trade History</h3>
+      <div id="historyLog">
+        <p>No trades yet.</p>
+      </div>
+    </div>
+
+    <br>
+    <a href="index.html"><button>Back Home</button></a>
+  </section>
+
+  <script>
+    let cash = 10000;
+    let price = 100;
+    let shares = 0;
+    let prices = [100];
+    let day = 1;
+    let historyLog = [];
+
+    const canvas = document.getElementById("stockChart");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = 320;
+      drawChart();
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+
+    function updateScreen() {
+      document.getElementById("cash").innerText = "$" + cash.toFixed(2);
+      document.getElementById("price").innerText = "$" + price.toFixed(2);
+      document.getElementById("shares").innerText = shares;
+
+      let totalValue = cash + shares * price;
+      document.getElementById("value").innerText = "$" + totalValue.toFixed(2);
+
+      updateHistory();
+      drawChart();
+    }
+
+    function nextDay() {
+      day++;
+
+      let change = (Math.random() - 0.45) * 10;
+      price = Math.max(5, price + change);
+      prices.push(price);
+
+      addHistory("Day " + day + ": Stock moved to $" + price.toFixed(2));
+      updateScreen();
+    }
+
+    function buyStock() {
+      const amount = Number(document.getElementById("amount").value);
+
+      if (!amount || amount <= 0) {
+        alert("Enter how many shares you want to buy.");
+        return;
+      }
+
+      const cost = amount * price;
+
+      if (cost > cash) {
+        alert("You do not have enough fake cash.");
+        return;
+      }
+
+      cash -= cost;
+      shares += amount;
+
+      addHistory("Bought " + amount + " shares at $" + price.toFixed(2));
+      updateScreen();
+    }
+
+    function sellStock() {
+      const amount = Number(document.getElementById("amount").value);
+
+      if (!amount || amount <= 0) {
+        alert("Enter how many shares you want to sell.");
+        return;
+      }
+
+      if (amount > shares) {
+        alert("You do not own that many shares.");
+        return;
+      }
+
+      cash += amount * price;
+      shares -= amount;
+
+      addHistory("Sold " + amount + " shares at $" + price.toFixed(2));
+      updateScreen();
+    }
+
+    function resetGame() {
+      cash = 10000;
+      price = 100;
+      shares = 0;
+      prices = [100];
+      day = 1;
+      historyLog = [];
+
+      updateScreen();
+    }
+
+    function addHistory(text) {
+      historyLog.unshift(text);
+    }
+
+    function updateHistory() {
+      const box = document.getElementById("historyLog");
+
+      if (historyLog.length === 0) {
+        box.innerHTML = "<p>No trades yet.</p>";
+        return;
+      }
+
+      box.innerHTML = historyLog.map(item => "<p>" + item + "</p>").join("");
+    }
+
+    function drawChart() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (prices.length < 2) {
+        ctx.fillStyle = "white";
+        ctx.font = "18px Arial";
+        ctx.fillText("Click Next Day to start the graph", 30, 160);
+        return;
+      }
+
+      let maxPrice = Math.max(...prices);
+      let minPrice = Math.min(...prices);
+
+      ctx.strokeStyle = "#ff1f1f";
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+
+      prices.forEach((p, i) => {
+        let x = (i / (prices.length - 1)) * canvas.width;
+        let y = canvas.height - ((p - minPrice) / (maxPrice - minPrice || 1)) * canvas.height;
+
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      });
+
+      ctx.stroke();
+
+      ctx.fillStyle = "white";
+      ctx.font = "14px Arial";
+      ctx.fillText("Fake Stock Price Practice Chart", 20, 25);
+    }
+
+    resizeCanvas();
+    updateScreen();
+  </script>
+</body>
+</html>
