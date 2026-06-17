@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Compound Growth Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="steps">
+  <h2>Compound Growth Calculator</h2>
+
+  <div class="warning">
+    <h3>Education Only</h3>
+    <p>This calculator is only an estimate. Real investing results are never guaranteed.</p>
+  </div>
+
+  <div class="card">
+    <h3>Enter Your Numbers</h3>
+
+    <input id="startAmount" type="number" placeholder="Starting amount">
+    <input id="monthly" type="number" placeholder="Monthly contribution">
+    <input id="years" type="number" placeholder="Years">
+    <input id="growth" type="number" placeholder="Estimated yearly growth %, example: 7">
+
+    <button onclick="calculateGrowth()">Calculate</button>
+
+    <div id="growthResult"></div>
+  </div>
+
+  <a href="index.html"><button>Back Home</button></a>
+</section>
+
+<script>
+function calculateGrowth() {
+  let balance = Number(document.getElementById("startAmount").value);
+  let monthly = Number(document.getElementById("monthly").value);
+  let years = Number(document.getElementById("years").value);
+  let growth = Number(document.getElementById("growth").value) / 100 / 12;
+  let result = document.getElementById("growthResult");
+
+  if (!balance || !years || isNaN(monthly) || isNaN(growth)) {
+    result.innerHTML = "<p>Please fill out the boxes correctly.</p>";
+    return;
+  }
+
+  let months = years * 12;
+
+  for (let i = 0; i < months; i++) {
+    balance = balance * (1 + growth) + monthly;
+  }
+
+  result.innerHTML = `
+    <h3>Estimated Future Value</h3>
+    <p><strong>$${balance.toFixed(2)}</strong></p>
+    <p>This is only an estimate, not a guarantee.</p>
+  `;
+}
+</script>
+
+</body>
+</html>
