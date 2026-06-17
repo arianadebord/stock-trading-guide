@@ -6,31 +6,55 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <section class="steps">
   <h2>Trading Journey Tracker</h2>
 
   <div class="card">
     <h3>Your Beginner Progress</h3>
-    <p><input type="checkbox"> Learned what stocks are</p>
-    <p><input type="checkbox"> Learned what brokers are</p>
-    <p><input type="checkbox"> Learned chart basics</p>
-    <p><input type="checkbox"> Learned candlesticks</p>
-    <p><input type="checkbox"> Learned support and resistance</p>
-    <p><input type="checkbox"> Learned risk management</p>
-    <p><input type="checkbox"> Learned trading psychology</p>
-    <p><input type="checkbox"> Built a watchlist</p>
-    <p><input type="checkbox"> Created a trading plan</p>
-    <p><input type="checkbox"> Completed 10 paper trades</p>
-    <p><input type="checkbox"> Completed 25 paper trades</p>
-    <p><input type="checkbox"> Completed 50 paper trades</p>
+
+    <p><input type="checkbox" class="progress"> Learned what stocks are</p>
+    <p><input type="checkbox" class="progress"> Learned what brokers are</p>
+    <p><input type="checkbox" class="progress"> Learned chart basics</p>
+    <p><input type="checkbox" class="progress"> Learned candlesticks</p>
+    <p><input type="checkbox" class="progress"> Learned support and resistance</p>
+    <p><input type="checkbox" class="progress"> Learned risk management</p>
+    <p><input type="checkbox" class="progress"> Learned trading psychology</p>
+    <p><input type="checkbox" class="progress"> Built a watchlist</p>
+    <p><input type="checkbox" class="progress"> Created a trading plan</p>
+    <p><input type="checkbox" class="progress"> Completed 10 paper trades</p>
+    <p><input type="checkbox" class="progress"> Completed 25 paper trades</p>
+    <p><input type="checkbox" class="progress"> Completed 50 paper trades</p>
+
+    <button onclick="resetProgress()">Reset Progress</button>
   </div>
 
   <div class="card">
-    <h3>Beginner Goal</h3>
-    <p>Do not rush. The goal is to understand the market, practice safely, and build good habits before using real money.</p>
+    <h3>Progress Saved</h3>
+    <p>Your checkboxes should stay checked on the same device/browser.</p>
   </div>
 
   <a href="index.html"><button>Back Home</button></a>
 </section>
+
+<script>
+const boxes = document.querySelectorAll(".progress");
+
+boxes.forEach((box, index) => {
+  box.checked = localStorage.getItem("journey-" + index) === "true";
+
+  box.addEventListener("change", () => {
+    localStorage.setItem("journey-" + index, box.checked);
+  });
+});
+
+function resetProgress() {
+  boxes.forEach((box, index) => {
+    box.checked = false;
+    localStorage.setItem("journey-" + index, false);
+  });
+}
+</script>
+
 </body>
 </html>
